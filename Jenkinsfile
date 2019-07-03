@@ -1,15 +1,20 @@
 pipeline {
-    agent any {
-        stages {
-            stage("Compile") {
-                steps {
-                    sh "./gradlew compileJava"
-                }
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
             }
-            stage("Unit Test") {
-                steps {
-                    sh "./gradlew test"
-                }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
             }
         }
     }
