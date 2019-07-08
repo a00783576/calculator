@@ -43,8 +43,7 @@ pipeline {
     post {
         always {
 	    /* Use slackNotifier.groovy from shared library and provide current build result as parameter */   
-            slackNotifier currentBuild.currentResult
-            cleanWs()
+            slackSend "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
         }
     }
 }
