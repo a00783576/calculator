@@ -41,7 +41,6 @@ pipeline {
     }
 
     post {
-<<<<<<< HEAD
         always {	              
               if ( currentBuild.currentResult == "SUCCESS" ) {
                     slackSend color: "good", message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} was successful"
@@ -56,11 +55,6 @@ pipeline {
                     slackSend color: "danger", message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} its resulat was unclear"	
                 }
             cleanWs()
-=======
-        always {
-	    /* Use slackNotifier.groovy from shared library and provide current build result as parameter */   
-            slackSend message: "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
->>>>>>> a8ce4812b4e16eac099d10a25bddfe064a402e32
         }
     }
 }
