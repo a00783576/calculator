@@ -41,21 +41,25 @@ pipeline {
     }
 
     post {
-        always {
-            echo 'One way or another, I have finished'
-            deleteDir() /* clean up our workspace */
-        }
         success {
-            echo 'I succeeeded!'
+            slackSend channel: "#builds", 
+                color: "good", 
+                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"
         }
         unstable {
-            echo 'I am unstable :/'
+            slackSend channel: "#builds", 
+                color: "danger", 
+                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"
         }
         failure {
-            echo 'I failed :('
+            slackSend channel: "#builds", 
+                color: "danger", 
+                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"
         }
         changed {
-            echo 'Things were different before...'
+            slackSend channel: "#builds", 
+                color: "danger", 
+                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"
         }
     }
 }
