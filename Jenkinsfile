@@ -38,6 +38,16 @@ pipeline {
                 )
             }
         }
+        stage("Package"){
+            steps {
+                sh "./gradlew build"
+            }
+        }
+        stage("Docker Build"){
+            steps {
+                sh "docker build -t a00783576/calculator ."
+            }
+        }
     }
 
     post {
