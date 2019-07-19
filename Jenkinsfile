@@ -1,5 +1,10 @@
 pipeline {
-    agent docker
+    agent {
+        docker {
+            dockerfile true
+            label 'docker'
+        }
+    }
 
     stages {
         stage("Compile") {
