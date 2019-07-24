@@ -50,7 +50,7 @@ pipeline {
         }
         stage("Docker Push"){
             steps {
-                sh "docker push a00783576/calculator ."
+                sh "docker push a00783576/calculator"
             }
         }
     }
