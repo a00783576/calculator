@@ -53,6 +53,9 @@ pipeline {
         }
         stage("Docker Push"){
             steps {
+                withCredentials([string(credentialsId: 'DockerHub', variable: 'TOKEN')]) {
+                    echo "My password is '${TOKEN}'!"
+                }
                 sh "docker login --username $DOCKER_USER --password $DOCKER_PASSWORD"
                 sh "docker push a00783576/calculator"
             }
