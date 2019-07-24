@@ -1,6 +1,9 @@
 pipeline {
     agent any
-
+    environment {
+        DOCKER_USER = 'arturo-gutierrez@live.com'
+        DOCKER_PASSWORD = 'gusa840419bc7'
+    }
     stages {
         stage("Compile") {
             steps {
@@ -50,7 +53,7 @@ pipeline {
         }
         stage("Docker Push"){
             steps {
-                sh "cat ~/docker_hub_password.txt | docker login --username arturo-gutierrez@live.com --password-stdin"
+                sh "docker login --username $DOCKER_USER --password $DOCKER_PASSWORD"
                 sh "docker push a00783576/calculator"
             }
         }
