@@ -2,7 +2,6 @@ pipeline {
     agent any
     environment {
         DOCKER_USER = 'a00783576'
-        DOCKER_PASSWORD = 'Goodbye1234'
     }
     stages {
         stage("Compile") {
@@ -53,11 +52,10 @@ pipeline {
         }
         stage("Docker Push"){
             steps {
-                withCredentials([string(credentialsId: 'DockerHub', variable: 'TOKEN')]) {
-                    echo "My password is '${TOKEN}'!"
+                withCredentials([string(credentialsId: 'DockerHub', variable: 'DOCKER_PASSWORD')]) {             
+                    sh "docker login --username $DOCKER_USER --password $DOCKER_PASSWORD"
+                    sh "docker push a00783576/calculator"
                 }
-                sh "docker login --username $DOCKER_USER --password $DOCKER_PASSWORD"
-                sh "docker push a00783576/calculator"
             }
         }
     }
