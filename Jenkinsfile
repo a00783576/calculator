@@ -50,6 +50,7 @@ pipeline {
         }
         stage("Docker Push"){
             steps {
+                sh "cat ~/docker_hub_password.txt | docker login --username arturo-gutierrez@live.com --password-stdin"
                 sh "docker push a00783576/calculator"
             }
         }
