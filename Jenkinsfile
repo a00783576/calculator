@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        DOCKER_USER = 'arturo-gutierrez@live.com'
-        DOCKER_PASSWORD = 'gusa840419bc7'
+        DOCKER_USER = 'a00783576'
+        DOCKER_PASSWORD = 'Goodbye1234'
     }
     stages {
         stage("Compile") {
