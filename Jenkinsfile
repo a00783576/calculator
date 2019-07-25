@@ -60,7 +60,7 @@ pipeline {
         }
         stage("Deploy To Staging"){
             steps {
-                sh "docker run -d --rm -p 8765:8080 --name calculator a00783576/calculator mode=host"
+                sh "docker run --cap-add=NET_ADMIN -d --rm -p 8765:8080 --name calculator a00783576/calculator"
             }
         }
     }
