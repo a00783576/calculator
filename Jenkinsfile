@@ -59,14 +59,22 @@ pipeline {
             }
         }
         stage("Deploy To Staging"){
-            steps {
-                sh "docker stop calculator || true"
+            steps {                
                 sh "docker run --cap-add=NET_ADMIN -d --rm -p 8765:8080 --name calculator a00783576/calculator"
+            }
+        }
+        stage("Acceptance Test"){
+            steps {
+                sleep 60
+                sh "chmod + acceptance_test.sh && ./acceptance_test.sh"
             }
         }
     }
 
     post {
+        always {
+            sh "docker stop calculator || true"
+        }
         success {
             slackSend channel: "#builds", 
                 color: "good", 
