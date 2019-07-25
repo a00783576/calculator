@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    environment {
+        DOCKER_USER = 'a00783576'
+    }
     stages {
         stage("Compile") {
             steps {
@@ -50,8 +52,16 @@ pipeline {
         }
         stage("Docker Push"){
             steps {
-                sh "cat ~/docker_hub_password.txt | docker login --username arturo-gutierrez@live.com --password-stdin"
-                sh "docker push a00783576/calculator"
+                withCredentials([string(credentialsId: 'DockerHub', variable: 'DOCKER_PASSWORD')]) {             
+                    sh "docker login --username $DOCKER_USER --password $DOCKER_PASSWORD"
+                    sh "docker push a00783576/calculator"
+                }
+            }
+        }
+        stage("Deploy To Staging"){
+            steps {
+                sh "docker stop a00783576/calculator || true"
+                sh "docker run --cap-add=NET_ADMIN -d --rm -p 8765:8080 --name calculator a00783576/calculator"
             }
         }
     }
