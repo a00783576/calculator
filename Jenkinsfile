@@ -60,6 +60,7 @@ pipeline {
         }
         stage("Deploy To Staging"){
             steps {
+                sh "docker stop a00783576/calculator || true"
                 sh "docker run --cap-add=NET_ADMIN -d --rm -p 8765:8080 --name calculator a00783576/calculator"
             }
         }
