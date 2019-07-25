@@ -60,7 +60,7 @@ pipeline {
         }
         stage("Deploy To Staging"){
             steps {                
-                sh "docker run --network="host" -d --rm -p 8765:8080 --name calculator a00783576/calculator"
+                sh "docker run --network=host -d --rm -p 8765:8080 --name calculator a00783576/calculator"
             }
         }
         stage("Acceptance Test"){
