@@ -1,4 +1,4 @@
-package com.arturo.calculator;
+package com.arturo.calculator.model;
 
 import org.springframework.stereotype.Service;
 

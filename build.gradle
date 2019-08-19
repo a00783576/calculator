@@ -21,6 +21,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.cucumber:cucumber-java:4.7.1'
     testImplementation 'io.cucumber:cucumber-junit:4.7.1'
+    compile group: 'io.cucumber', name: 'cucumber-spring', version: '4.7.1'
+    compile group: 'io.cucumber', name: 'cucumber-junit', version: '4.7.1'
+    compile group: 'io.cucumber', name: 'cucumber-java', version: '4.7.1'
 }
 
 // jacoco {

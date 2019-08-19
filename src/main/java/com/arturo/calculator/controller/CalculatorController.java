@@ -1,4 +1,6 @@
-package com.arturo.calculator;
+package com.arturo.calculator.controller;
+
+import com.arturo.calculator.model.Calculator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
