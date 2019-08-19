@@ -7,7 +7,7 @@ import io.cucumber.junit.CucumberOptions;
 
 /** Acceptance Test */
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources", plugin = {"io.cucumber.pro.JsonReporter:default"})
+@CucumberOptions(features = "src/test/resources", plugin = {"pretty", "json:target/cucumber-report.json"})
 public class AcceptanceTest {
     
 }
